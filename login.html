@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - Godesaku!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body class="login-body-bg"> <div class="login-card animate__animated animate__fadeInDown">
+        <div class="login-header">
+            <i class="fas fa-city login-logo-icon"></i>
+            <h2>Godesaku!</h2>
+            <p>Masuk untuk mengelola layanan desa</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" placeholder="Alamat Email" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Kata Sandi" required>
+            </div>
+            
+            <button type="submit" class="btn-login" id="btnLogin">
+                <span id="btnText">MASUK SEKARANG</span>
+                <i id="btnLoader" class="fas fa-spinner fa-spin" style="display:none;"></i>
+            </button>
+        </form>
+
+        <div class="separator"><span>Atau</span></div>
+
+        <button class="btn-google" onclick="googleLogin()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+            Masuk dengan Google
+        </button>
+
+        <p class="login-footer">Kembali ke <a href="index.html">Beranda</a></p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah reload halaman langsung
+
+            const btnText = document.getElementById('btnText');
+            const btnLoader = document.getElementById('btnLoader');
+            const btnLogin = document.getElementById('btnLogin');
+
+            // 1. Efek Animasi Loading
+            btnText.innerText = "Mengecek Akun...";
+            btnLoader.style.display = "inline-block";
+            btnLogin.style.opacity = "0.7";
+            btnLogin.disabled = true;
+
+            // 2. Simulasi proses pengecekan selama 1.5 detik
+            setTimeout(() => {
+                alert("Login Berhasil! Selamat Datang di Godesaku!");
+                window.location.href = "index.html"; // Pindah ke halaman beranda
+            }, 1500);
+        });
+
+        function googleLogin() {
+            alert("Menghubungkan ke Akun Google...");
+            // Di sini nantinya diletakkan integrasi API Google Login
+        }
+    </script>
+</body>
+</html>

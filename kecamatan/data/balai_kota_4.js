@@ -1,0 +1,1 @@
+var json_balai_kota_4 = {"type":"FeatureCollection","name":"balai_kota_4","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"nama":"Balai Kota Kec. Bumiayu"},"geometry":{"type":"Point","coordinates":[109.004905422652769,-7.252618841310237]}}]}

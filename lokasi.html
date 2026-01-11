@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pemetaan SIG - Godesaku!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        /* CSS Tambahan Khusus Halaman Lokasi */
+        .map-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            border: 2px solid var(--primary-color, #007bff);
+            background: transparent;
+            color: var(--primary-color, #007bff);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color, #007bff);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .tab-btn:hover {
+            background: var(--primary-color, #007bff);
+            color: white;
+        }
+
+        .map-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+        }
+
+        .map-title-bar {
+            background: #343a40;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: #eee;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .map-info-footer {
+            padding: 30px;
+            background: #fff;
+            border-top: 5px solid var(--primary-color, #007bff);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .stat-box small {
+            color: #7f8c8d;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            display: block;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .stat-box p {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .iframe-container { height: 400px; }
+            .tab-btn { padding: 8px 15px; font-size: 0.8rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo-wrapper">
+                <img src="logo kecamatan.png" style="height: 100px; width: auto;">
+                <a href="index.html" class="logo">GODESAKU!</a>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="tentangkami.html">Tentang Kami</a></li>
+                    <li><a href="lokasi.html" class="active">Lokasi/Peta</a></li> 
+                </ul>
+            </nav>
+            <a href="login.html" class="cta-secondary">Logout</a>
+        </div>
+    </header>
+
+    <main class="location-page" style="padding-top: 50px;">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 30px;">
+                <h1 class="animate__animated animate__fadeInDown">SISTEM INFORMASI <span style="color: #007bff;">GEOGRAFIS</span></h1>
+                <p class="animate__animated animate__fadeInUp">Navigasi Peta Digital dan Analisis Data Wilayah</p>
+            </div>
+
+            <div class="map-tabs animate__animated animate__fadeIn">
+                <button class="tab-btn active" onclick="updateMap('kaliwadas', this)">Peta Kaliwadas</button>
+                <button class="tab-btn" onclick="updateMap('laren', this)">Peta Laren</button>
+                <button class="tab-btn" onclick="updateMap('kalinusu', this)">Peta Kalinusu</button>
+                <button class="tab-btn" onclick="updateMap('pruwatan', this)">Peta Pruwatan</button>
+                <button class="tab-btn" onclick="updateMap('kecamatan', this)">Peta Kecamatan</button>
+            </div>
+
+            <article class="map-card animate__animated animate__zoomIn">
+                <div class="map-title-bar">
+                    <i class="fas fa-map-marked-alt" style="color: #28a745; font-size: 1.5rem;"></i>
+                    <h2 id="display-title">Peta Administrasi Desa Kaliwadas</h2>
+                </div>
+                
+                <div class="iframe-container">
+                    <iframe id="map-frame" src="kaliwadas/index.html" title="Peta SIG"></iframe>
+                </div>
+
+                <div class="map-info-footer">
+                    <div class="stats-grid" id="stats-container">
+                        <div class="stat-box">
+                            <small>Jumlah Penduduk</small>
+                            <p id="stat-populasi">6.618 Jiwa</p>
+                        </div>
+                        <div class="stat-box">
+                            <small>Luas Wilayah</small>
+                            <p id="stat-luas">250,5 Ha</p>
+                        </div>
+                        <div class="stat-box">
+                            <small>Kepadatan</small>
+                            <p id="stat-kepadatan">Tinggi</p>
+                        </div>
+                        <div class="stat-box">
+                            <small>Potensi Utama</small>
+                            <p id="stat-potensi">Pertanian & UMKM</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 GODESAKU! | Developed by M. Fizki Fajrul Huda.</p>
+        </div>
+    </footer>
+
+    <script>
+        function updateMap(wilayah, element) {
+            const frame = document.getElementById('map-frame');
+            const title = document.getElementById('display-title');
+            const statsCont = document.getElementById('stats-container');
+            
+            const elPopulasi = document.getElementById('stat-populasi');
+            const elLuas = document.getElementById('stat-luas');
+            const elKepadatan = document.getElementById('stat-kepadatan');
+            const elPotensi = document.getElementById('stat-potensi');
+            
+            // DATABASE DISESUAIKAN DENGAN NAMA FOLDER ANDA
+            const mapData = {
+                'kaliwadas': { 
+                    title: 'Peta Administrasi Desa Kaliwadas', 
+                    src: 'kaliwadas/index.html',
+                    populasi: '6.618 Jiwa', luas: '250,5 Ha', density: 'Tinggi', potensi: 'Pertanian & UMKM'
+                },
+                'laren': { 
+                    title: 'Peta Administrasi Desa Laren', 
+                    src: 'laren/index.html',
+                    populasi: '5.120 Jiwa', luas: '185,4 Ha', density: 'Sedang', potensi: 'Peternakan'
+                },
+                'kalinusu': { 
+                    title: 'Peta Administrasi Desa Kalinusu', 
+                    src: 'kalinusu/index.html',
+                    populasi: '4.950 Jiwa', luas: '312,0 Ha', density: 'Rendah', potensi: 'Perkebunan'
+                },
+                'pruwatan': { 
+                    title: 'Peta Administrasi Desa Pruwatan', 
+                    src: 'pruwatan/index.html',
+                    populasi: '7.300 Jiwa', luas: '270,2 Ha', density: 'Sangat Tinggi', potensi: 'Perdagangan'
+                },
+                'kecamatan': { 
+                    title: 'Peta Wilayah Kecamatan', 
+                    src: 'kecamatan/index.html',
+                    populasi: '85.400 Jiwa', luas: '12.402 Ha', density: 'Menengah', potensi: 'Pusat Niaga'
+                }
+            };
+
+            // Animasi transisi
+            frame.style.opacity = '0';
+            statsCont.style.opacity = '0';
+            
+            setTimeout(() => {
+                if(mapData[wilayah]) {
+                    title.innerText = mapData[wilayah].title;
+                    frame.src = mapData[wilayah].src;
+                    
+                    elPopulasi.innerText = mapData[wilayah].populasi;
+                    elLuas.innerText = mapData[wilayah].luas;
+                    elKepadatan.innerText = mapData[wilayah].density;
+                    elPotensi.innerText = mapData[wilayah].potensi;
+                }
+
+                frame.style.opacity = '1';
+                statsCont.style.opacity = '1';
+            }, 300);
+
+            // Update tombol aktif
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>

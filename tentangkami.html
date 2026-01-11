@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tentang Kami - Godesaku!</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <style>
+      /* CSS Ramping untuk Profil Developer */
+      .section-title-compact {
+        text-align: center;
+        font-size: 1.8rem;
+        color: #2c3e50;
+        margin: 50px 0 25px;
+      }
+
+      .dev-card-compact {
+        max-width: 750px;
+        margin: 0 auto 60px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        border: 1px solid #eee;
+      }
+
+      .dev-card-inner {
+        display: flex;
+        align-items: stretch;
+      }
+
+      .dev-side-visual {
+        flex: 0 0 220px;
+        background: #f8faff;
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid #f0f0f0;
+      }
+
+      .img-frame-mini {
+        width: 130px;
+        height: 130px;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border: 4px solid #fff;
+      }
+
+      .profile-pic {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .dev-social-mini {
+        display: flex;
+        gap: 10px;
+      }
+
+      .dev-social-mini a {
+        color: #747d8c;
+        font-size: 1rem;
+        width: 32px;
+        height: 32px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 1px solid #eee;
+        transition: 0.3s;
+      }
+
+      .dev-side-info {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .dev-role-small {
+        color: #007bff;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        display: block;
+      }
+
+      .dev-side-info h3 {
+        font-size: 1.5rem;
+        margin: 0 0 5px;
+        color: #2d3436;
+      }
+
+      .dev-uni {
+        font-size: 0.85rem;
+        color: #636e72;
+        display: block;
+        margin-bottom: 15px;
+      }
+
+      .dev-bio-compact {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: #57606f;
+        background: #fdfdfd;
+        padding: 12px;
+        border-radius: 10px;
+        border-left: 3px solid #007bff;
+        margin-bottom: 15px;
+        font-style: italic;
+      }
+
+      .tag-mini {
+        font-size: 0.7rem;
+        background: #f1f2f6;
+        color: #2f3542;
+        padding: 4px 10px;
+        border-radius: 5px;
+        font-weight: 600;
+        margin-right: 5px;
+      }
+
+      @media (max-width: 600px) {
+        .dev-card-inner {
+          flex-direction: column;
+        }
+        .dev-side-visual {
+          flex: none;
+          border-right: none;
+          border-bottom: 1px solid #eee;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <div class="logo-wrapper">
+          <img src="logo kecamatan.png" style="height: 100px; width: auto" />
+          <a href="index.html" class="logo">GODESAKU!</a>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="tentangkami.html" class="active">Tentang Kami</a></li>
+            <li><a href="lokasi.html">Lokasi/Peta</a></li>
+          </ul>
+        </nav>
+        <a href="login.html" class="cta-secondary">Logout</a>
+      </div>
+    </header>
+
+    <section class="about-hero-hd">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content-wrapper">
+        <h1 class="animate__animated animate__fadeIn">Profil Desa Kaliwadas</h1>
+        <p class="lead-text animate__animated animate__fadeInUp">
+          Informasi teknis infrastruktur jalan dan profil tim pengembang sistem.
+        </p>
+      </div>
+    </section>
+
+    <section class="about-content">
+      <div class="container">
+        <div class="stats-grid-container animate__animated animate__fadeIn">
+          <div class="stats-row">
+            <div class="stats-card">
+              <h3><i class="fas fa-info-circle"></i> Keterangan</h3>
+              <table class="data-table">
+                <tr>
+                  <td>No. Ruas</td>
+                  <td><strong>183</strong></td>
+                </tr>
+                <tr>
+                  <td>Nama Ruas</td>
+                  <td><strong>Jl. Kaliwadas - Kedungoleng</strong></td>
+                </tr>
+                <tr>
+                  <td>Panjang (km)</td>
+                  <td><strong>6.12</strong></td>
+                </tr>
+                <tr>
+                  <td>Lebar (m)</td>
+                  <td><strong>3.25</strong></td>
+                </tr>
+                <tr>
+                  <td>Status</td>
+                  <td><strong>Kabupaten</strong></td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="stats-card">
+              <h3><i class="fas fa-chart-line"></i> Kondisi</h3>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Kondisi</th>
+                    <th>2022</th>
+                    <th>2023</th>
+                    <th>2024</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Baik</td>
+                    <td>0.82</td>
+                    <td>1.63</td>
+                    <td>1.49</td>
+                  </tr>
+                  <tr>
+                    <td>Sedang</td>
+                    <td>2.19</td>
+                    <td>1.90</td>
+                    <td>1.45</td>
+                  </tr>
+                  <tr>
+                    <td>Rusak Ringan</td>
+                    <td>2.08</td>
+                    <td>1.80</td>
+                    <td>2.11</td>
+                  </tr>
+                  <tr>
+                    <td>Rusak Berat</td>
+                    <td>1.03</td>
+                    <td>0.79</td>
+                    <td>1.07</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="stats-row">
+            <div class="stats-card">
+              <h3><i class="fas fa-map-marker-alt"></i> Lokasi</h3>
+              <table class="data-table">
+                <tr>
+                  <td>Kecamatan</td>
+                  <td><strong>Paguyangan</strong></td>
+                </tr>
+                <tr>
+                  <td>UPT</td>
+                  <td><strong>Bumiayu</strong></td>
+                </tr>
+                <tr>
+                  <td>Koordinat Awal</td>
+                  <td><span class="coord">-7.2629151,108.9874802</span></td>
+                </tr>
+                <tr>
+                  <td>Koordinat Akhir</td>
+                  <td><span class="coord">-7.3103828,108.9929886</span></td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="stats-card">
+              <h3><i class="fas fa-road"></i> Perkerasan</h3>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Tipe</th>
+                    <th>2022</th>
+                    <th>2023</th>
+                    <th>2024</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Aspal (km)</td>
+                    <td>4.20</td>
+                    <td>4.95</td>
+                    <td>4.48</td>
+                  </tr>
+                  <tr>
+                    <td>Rigid/Beton (km)</td>
+                    <td>1.92</td>
+                    <td>1.17</td>
+                    <td>1.63</td>
+                  </tr>
+                  <tr>
+                    <td>Lainnya</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title-compact animate__animated animate__fadeIn">
+          Tim Pengembang
+        </h2>
+
+        <div class="dev-card-compact animate__animated animate__fadeInUp">
+          <div class="dev-card-inner">
+            <div class="dev-side-visual">
+              <div class="img-frame-mini">
+                <img
+                  src="prifil.jpeg"
+                  alt="M. Fizki Fajrul Huda"
+                  class="profile-pic"
+                />
+              </div>
+              <div class="dev-social-mini">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+
+            <div class="dev-side-info">
+              <span class="dev-role-small">Lead Developer</span>
+              <h3>M. Fizki Fajrul Huda</h3>
+              <span class="dev-uni"
+                >Universitas Amikom Purwokerto • 23SA21A199</span
+              >
+
+              <div class="dev-bio-compact">
+                "Fokus pada pengembangan solusi Web-GIS untuk memodernisasi tata
+                kelola data di tingkat desa melalui sistem Godesaku!."
+              </div>
+
+              <div class="skill-list-compact">
+                <span class="tag-mini">Web Development</span>
+                <span class="tag-mini">GIS Analysis</span>
+                <span class="tag-mini">UI/UX Design</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="main-footer">
+      <div class="container">
+        <p>&copy; 2025 GODESAKU! | Developed by M. Fizki Fajrul Huda.</p>
+      </div>
+    </footer>
+  </body>
+</html>
